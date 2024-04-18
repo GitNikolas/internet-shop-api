@@ -21,9 +21,15 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 2,
+    minlength: 1,
     maxlength: 30,
   },
+  surname: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 30,
+  }
 });
 
 module.exports = mongoose.model('user', userSchema);

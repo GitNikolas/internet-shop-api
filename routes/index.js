@@ -7,12 +7,13 @@ const NotFoundError = require('../errors/not-found-error');
 router.use(consoleLoggerMiddleware);
 
 const userRouter = require('./users');
-const movieRouter = require('./movies');
+const productRouter = require('./products');
+
 const { login, postUser, signout } = require('../controllers/users');
 
 router.use('/users', auth, userRouter);
 
-router.use('/movies', auth, movieRouter);
+router.use('/products', auth, productRouter);
 
 router.post('/signin', checkSignIn(), login);
 

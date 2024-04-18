@@ -27,19 +27,18 @@ const getUser = (req, res, next) => {
 
 const postUser = (req, res, next) => {
   const {
-    name, about, avatar, email, password,
+    email, name,password,surname, 
   } = req.body;
 
   return bcrypt.hash(password, 10)
     .then((hash) => userModel.create({
-      name, about, avatar, email, password: hash,
+      email, name, password: hash, surname
     }))
     .then((userData) => {
       res.status(HTTP_STATUS_CREATED).send({
-        name: userData.name,
-        about: userData.about,
-        avatar: userData.avatar,
         email: userData.email,
+        name: userData.name,
+        surname: userData.surname,
       });
     })
     .catch((err) => {
@@ -54,11 +53,11 @@ const postUser = (req, res, next) => {
 };
 
 const updateUser = (req, res, next) => {
-  const { name, email } = req.body;
+  const { name, surname } = req.body;
 
   return userModel.findByIdAndUpdate(
     req.user._id,
-    { name, email },
+    { name, surname },
     { new: true, runValidators: true },
   )
     .then((response) => res.status(HTTP_STATUS_OK).send(response))

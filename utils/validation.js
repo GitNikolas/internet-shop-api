@@ -14,36 +14,33 @@ function checkSignUp() {
     body: Joi.object().keys({
       email: Joi.string().email().required(),
       password: Joi.string().required(),
-      name: Joi.string().min(2).max(30),
+      name: Joi.string().min(1).max(30),
+      surname: Joi.string().min(1).max(30),
     }),
   });
 }
 
-function checkMovieData() {
+function checkProductData() {
   return celebrate({
     body: Joi.object().keys({
-      country: Joi.string().required(),
-      director: Joi.string().required(),
-      duration: Joi.number().required(),
-      year: Joi.string().required(),
+      amount: Joi.number().required(),
+      category: Joi.string().required(),
       description: Joi.string().required(),
+      id: Joi.number().required(),
       // eslint-disable-next-line no-useless-escape
       image: Joi.string().required().regex(/https?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+\#?$/i),
       // eslint-disable-next-line no-useless-escape
-      trailerLink: Joi.string().required().regex(/https?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+\#?$/i),
-      // eslint-disable-next-line no-useless-escape
-      thumbnail: Joi.string().required().regex(/https?:\/\/(www\.)?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+\#?$/i),
-      movieId: Joi.number().required(),
-      nameRU: Joi.string().required(),
-      nameEN: Joi.string().required().regex(/^[^а-яё]+$/i),
+      price: Joi.number().required(),
+      rating: Joi.object().required(),
+      title: Joi.string().required(),
     }),
   });
 }
 
-function checkMovieId() {
+function checkProductId() {
   return celebrate({
     params: Joi.object().keys({
-      movieId: Joi.string().required(),
+      id: Joi.string().required(),
     }),
   });
 }
@@ -51,8 +48,8 @@ function checkMovieId() {
 function checkUserPatch() {
   return celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      email: Joi.string().email(),
+      name: Joi.string().min(1).max(30),
+      surname: Joi.string().min(1).max(30),
     }),
   });
 }
@@ -60,7 +57,7 @@ function checkUserPatch() {
 module.exports = {
   checkSignIn,
   checkSignUp,
-  checkMovieData,
-  checkMovieId,
+  checkProductData,
+  checkProductId,
   checkUserPatch,
 };

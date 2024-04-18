@@ -1,4 +1,4 @@
-const MONGO_DEV_URL = 'mongodb://localhost:27017/bitfilmsdb';
+const MONGO_DEV_URL = 'mongodb://localhost:27017/internetshopdb';
 const DEV_PORT = '3001';
 const JWT_SECRET_DEV = 'dev';
 
