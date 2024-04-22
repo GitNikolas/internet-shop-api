@@ -26,7 +26,7 @@ mongoose.connect(DB_URL, {
 const app = express();
 
 const corsOptions = {
-  origin: 'https://internetshoppet.ru/',
+  origin: 'https://internetshoppet.ru',
   credentials: true,
 };
 
